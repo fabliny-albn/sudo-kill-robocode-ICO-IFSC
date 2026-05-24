@@ -16,7 +16,7 @@ public class SudoKill extends AdvancedRobot
 	 */
 	public void run() {
 		// Customização de cores
-		setBodyColor(Color.red); // Corpo
+		setBodyColor(Color.black); // Corpo
 		setGunColor(Color.black); // Arma
 		setRadarColor(Color.black); // Radar
 		setScanColor(Color.red); // Scanner localizado
