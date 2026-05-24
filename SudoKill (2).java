@@ -9,27 +9,14 @@ import java.awt.Color;
 /**
  * SudoKill - a robot by (Fabliny, Alyne e Isabelle)
  */
-public class SudoKill extends AdvancedRobot
-{  boolean movingForward;
+boolean movingForward;
 	int direcao = 1;
 
-    	/**
-	 * run: SudoKill's default behavior
-	 */
-	public void run() {
-		// Customização de cores
-		setBodyColor(Color.red); // Corpo
-		setGunColor(Color.black); // Arma
-		setRadarColor(Color.black); // Radar
-		setScanColor(Color.red); // Scanner localizado
-		setBulletColor(Color.orange); // Bala
-		
-		// Desacopla o movimento do radar e da arma (permite girar os 3 de forma independente)
-		setAdjustRadarForRobotTurn(true);
-		setAdjustGunForRobotTurn(true);
-		setAdjustRadarForGunTurn(true);
-		
-		while(true) {
+    /**
+     */
+    public void run() {
+   	 
+   	 while(true) {
    		 // loop fugir e sobreviver
    		 setAhead(40000);  // anda para frente distancia grande
    		 movingForward = true; 
@@ -43,7 +30,8 @@ public class SudoKill extends AdvancedRobot
    		 
    	 }
     	}
-public void onScannedRobot(ScannedRobotEvent e) { // ver inimigo 
+	
+	public void onScannedRobot(ScannedRobotEvent e) { // ver inimigo 
     // gira perpendicular ao inimigo (90°)
     setTurnRight(e.getBearing() + 90);  // anda lateralmente (strafe)
     setAhead(120 * direcao);
