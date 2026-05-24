@@ -38,7 +38,7 @@ public class SudoKill extends AdvancedRobot
 		
 		while(true) {
 			movimentacaoPadrao();
-			
+			escanearInimigo();
 			// O execute() limpa a fila de comandos a cada turno do jogo
 			execute();
 		}
