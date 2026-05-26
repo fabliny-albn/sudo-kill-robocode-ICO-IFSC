@@ -27,11 +27,11 @@ A divisão do projeto entre os participantes foi:
 ## FUNCIONAMENTO 
 O funcinamento do robô se resume em:
 
-**1.** Configura as cores;
-**2.** Desacopla radar, arma e corpo;
-**3.** Mantém o radar girando infinitamente;
-**4.** Procura inimigos continuamente;
-**5.** Detecta um inimigo:
+1. Configura as cores;
+2. Desacopla radar, arma e corpo;
+3. Mantém o radar girando infinitamente;
+4. Procura inimigos continuamente;
+5. Detecta um inimigo:
     - Escolhe um alvo,
     - Trava o radar nele,
     - Se movimenta lateralmente,
