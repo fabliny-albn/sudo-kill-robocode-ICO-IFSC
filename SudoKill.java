@@ -11,6 +11,10 @@ import java.awt.Color;
  */
 public class SudoKill extends AdvancedRobot
 {
+     boolean movingForward;
+	int direcao = 1; //movimentacao
+
+
 	//distância máxima para atirar
     final double DISTANCIA_MAXIMA_TIRO = 300;
 
@@ -37,7 +41,7 @@ public class SudoKill extends AdvancedRobot
 		setAdjustRadarForGunTurn(true);
 		
 		while(true) {
-			movimentacaoPadrao();
+			movimentacaoEstrategica();
 			escanearInimigo();
 			// O execute() limpa a fila de comandos a cada turno do jogo
 			execute();
@@ -65,10 +69,13 @@ public class SudoKill extends AdvancedRobot
         }
 
         //segue o alvo atual 
-        seguirAlvo(e);
+        //seguirAlvo(e); 
 
         //trava radar no inimigo
         travarRadar(e);
+
+        // andar lateralmente 
+        movimentarCombate(e);
 
         //verifica se deve atirar
         if (!deveAtirar(e)) {
@@ -94,9 +101,18 @@ public class SudoKill extends AdvancedRobot
      * Evento disparado quando o seu robô bate na parede
      */
 	public void onHitWall(HitWallEvent e) {
-		// Replace the next line with any behavior you would like
-		back(20);
+		
+		reverseDirection();
+
 	}
+
+    public void onHitRobot(HitRobotEvent e) { // quando bate em outro robo - girar e fugir  
+       if (e.isMyFault()) {
+        setTurnRight(90);
+        reverseDirection();
+    
+       }
+    }   
 
 	//ATACAR (ISABELLE)
     /*
@@ -175,7 +191,7 @@ public class SudoKill extends AdvancedRobot
         double anguloCanhao = Math.atan2(futuroX - meuX, futuroY - meuY);
 
         //gira canhão
-        setTurnGunRightRadians(Utils.normalRelativeAngle(anguloCanhao - getGunHeadingRadians()));
+        setTurnGunRightRadians(Utils.normalRelativeAngle(anguloCanhao - 							getGunHeadingRadians()));
 
         //atira quando alinhado
         if (getGunHeat() == 0 && Math.abs(getGunTurnRemaining()) < 10) {
@@ -265,4 +281,40 @@ public class SudoKill extends AdvancedRobot
         // movimento constante
         setAhead(120);
     }
-}
+
+    public void movimentacaoEstrategica() {
+         // loop fugir e sobreviver
+   		 setAhead(40000);  // anda para frente distancia grande
+   		 movingForward = true; 
+   		 setTurnRight(80); // gira p direita e espera terminar o giro
+   		 waitFor(new TurnCompleteCondition(this));
+   		 setTurnLeft(90); //  gira p esquerda
+   		 turnGunRight(90); // gira canhão
+   		 waitFor(new TurnCompleteCondition(this)); 
+   		 setTurnRight(90); // gira p direita
+   		 turnGunRight(90); // canhao gira 
+    } 
+
+	public void movimentarCombate(ScannedRobotEvent e) { // ver inimigo 
+        // gira perpendicular ao inimigo (90°)
+        setTurnRight(e.getBearing() + 90);  // anda lateralmente (strafe)
+        setAhead(120 * direcao);
+        // troca direção aleatória
+        if (Math.random() > 0.85) {
+        direcao *= -1;
+        }   
+    } 
+
+    public void reverseDirection() { // trocar de direçao o robo
+        if (movingForward) {
+        setBack(3000);
+        setTurnRight(Math.random() > 0.5 ? 30 : -30);
+        movingForward = false;
+        } 
+        else {
+        setAhead(3000);
+        movingForward = true;
+        }
+    }
+	}
+	
