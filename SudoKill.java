@@ -11,12 +11,12 @@ import java.awt.Color;
  */
 public class SudoKill extends AdvancedRobot
 {
-     boolean movingForward;
+    boolean movingForward;
 	int direcao = 1; //movimentacao
 
 
 	//distância máxima para atirar
-    final double DISTANCIA_MAXIMA_TIRO = 300;
+    final double DISTANCIA_MAXIMA_TIRO = 400;
 
     //alvo atual
     String alvoAtual = null;
@@ -40,9 +40,20 @@ public class SudoKill extends AdvancedRobot
 		setAdjustGunForRobotTurn(true);
 		setAdjustRadarForGunTurn(true);
 		
+		// Gira o radar infinitamente até achar alguém
+        setTurnRadarRightRadians(Double.POSITIVE_INFINITY);
+		
+		// Estratégia Inicial: Começa escaneando a arena
+		//escanearInimigo();
 		while(true) {
-			movimentacaoEstrategica();
-			escanearInimigo();
+		
+			// Se o radar parar por algum motivo, força ele a girar de novo
+            if (getRadarTurnRemaining() == 0) {
+                setTurnRadarRightRadians(Double.POSITIVE_INFINITY);
+            }
+
+			//movimentacaoEstrategica();
+			
 			// O execute() limpa a fila de comandos a cada turno do jogo
 			execute();
 		}
@@ -78,39 +89,34 @@ public class SudoKill extends AdvancedRobot
         movimentarCombate(e);
 
         //verifica se deve atirar
-        if (!deveAtirar(e)) {
-            return;
+        if (deveAtirar(e)) {
+            //calcula força da bala
+        	double poder = calcularPoderBala(e);
+
+        	//usa mira preditiva
+        	miraPreditiva(e, poder);
         }
-
-        //calcula força da bala
-        double poder = calcularPoderBala(e);
-
-        //usa mira preditiva
-        miraPreditiva(e, poder);
 	}
 
 	/**
      * Evento disparado quando o seu robô leva um tiro
      */
 	public void onHitByBullet(HitByBulletEvent e) {
-		// Replace the next line with any behavior you would like
-		back(10);
+		// Muda de direção ao levar um tiro para quebrar a mira do Debochas
+        direcao *= -1;
 	}
 	
 	/**
      * Evento disparado quando o seu robô bate na parede
      */
 	public void onHitWall(HitWallEvent e) {
-		
 		reverseDirection();
-
 	}
 
     public void onHitRobot(HitRobotEvent e) { // quando bate em outro robo - girar e fugir  
        if (e.isMyFault()) {
-        setTurnRight(90);
-        reverseDirection();
-    
+        	// setTurnRight(90);
+        	reverseDirection();
        }
     }   
 
@@ -119,7 +125,6 @@ public class SudoKill extends AdvancedRobot
     ESCOLHA DE ALVO. (ISABELLE)
     */
     public void escolherAlvo(ScannedRobotEvent e) {
-
         double distancia = e.getDistance();
 
         //sem alvo atual
@@ -128,7 +133,6 @@ public class SudoKill extends AdvancedRobot
             alvoAtual = e.getName();
             //distancia do alvo atual é a distância do robo escaneado
             distanciaAlvo = distancia;
-
             return;
         }
 
@@ -136,13 +140,11 @@ public class SudoKill extends AdvancedRobot
         if (e.getName().equals(alvoAtual)) {
             //distancia do alvo atual é a distância do robo escaneado
             distanciaAlvo = distancia;
-
             return;
         }
 
         //troca de alvo se o novo inimigo for MUITO mais perto
         if (distancia < distanciaAlvo - 100) {
-
             alvoAtual = e.getName();
             distanciaAlvo = distancia;
         }
@@ -164,12 +166,10 @@ public class SudoKill extends AdvancedRobot
 
         //posição atual do inimigo
         double inimigoX = meuX + Math.sin(anguloAbsoluto) * e.getDistance();
-
         double inimigoY = meuY + Math.cos(anguloAbsoluto) * e.getDistance();
 
         //movimento do inimigo
         double headingInimigo = e.getHeadingRadians();
-
         double velocidadeInimigo = e.getVelocity();
 
         //tempo que a bala demora
@@ -177,13 +177,11 @@ public class SudoKill extends AdvancedRobot
 
         //posição futura prevista
         double futuroX = inimigoX + Math.sin(headingInimigo) * velocidadeInimigo * tempo;
-
         double futuroY = inimigoY + Math.cos(headingInimigo) * velocidadeInimigo * tempo;
 
         //impede mirar fora da arena
         futuroX = Math.max(18, Math.min(getBattleFieldWidth() - 18, futuroX)
         );
-
         futuroY = Math.max(18, Math.min(getBattleFieldHeight() - 18, futuroY)
         );
 
@@ -194,7 +192,7 @@ public class SudoKill extends AdvancedRobot
         setTurnGunRightRadians(Utils.normalRelativeAngle(anguloCanhao - 							getGunHeadingRadians()));
 
         //atira quando alinhado
-        if (getGunHeat() == 0 && Math.abs(getGunTurnRemaining()) < 10) {
+        if (getGunHeat() == 0 && Math.abs(getGunTurnRemaining()) < 15) {
             fire(poder);
         }
     }
@@ -229,16 +227,16 @@ public class SudoKill extends AdvancedRobot
         double distancia = e.getDistance();
 
         //se a distância for menor que 100. A potência da bala é a máxima do jogo
-        if (distancia < 100) {
+        if (distancia < 150) {
             return Rules.MAX_BULLET_POWER;
         }
 
         //se a distância for menor que 180. A potência da bala é 50% a máxima do jogo 
-        if (distancia < 200) {
-            return Rules.MAX_BULLET_POWER * 0.50;
+        if (distancia < 300) {
+            return 2.0;
         }
-        //se a distância for maior que 180. A potência da bala é a minima do jogo
-        return Rules.MIN_BULLET_POWER;
+        // Longe, tiro fraco para economizar energia
+        return 1.0;
     }
 
     /*
@@ -257,9 +255,10 @@ public class SudoKill extends AdvancedRobot
     public void onRobotDeath(RobotDeathEvent e) {
         //se o robô que escaneamos morrer, ele limpa o nome do alvo atual (null) e coloca a distância do alvo no máximo para acharmos outro algo.
         if (e.getName().equals(alvoAtual)) {
-
             alvoAtual = null;
             distanciaAlvo = Double.MAX_VALUE;
+			// Força o radar a girar procurando outro robô
+            setTurnRadarRightRadians(Double.POSITIVE_INFINITY);
         }
     }
 
@@ -297,11 +296,11 @@ public class SudoKill extends AdvancedRobot
 
 	public void movimentarCombate(ScannedRobotEvent e) { // ver inimigo 
         // gira perpendicular ao inimigo (90°)
-        setTurnRight(e.getBearing() + 90);  // anda lateralmente (strafe)
-        setAhead(120 * direcao);
+        setTurnRight(e.getBearing() + 90 - (10 * direcao));  // anda lateralmente (strafe)
+        setAhead(150 * direcao);
         // troca direção aleatória
         if (Math.random() > 0.85) {
-        direcao *= -1;
+        	direcao *= -1;
         }   
     } 
 
