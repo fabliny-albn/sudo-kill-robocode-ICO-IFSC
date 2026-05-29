@@ -296,8 +296,10 @@ public class SudoKill extends AdvancedRobot
 
 	public void movimentarCombate(ScannedRobotEvent e) { // ver inimigo 
         // gira perpendicular ao inimigo (90°)
+		// muda velocidade constantemente
+		setMaxVelocity(4 + Math.random() * 4);
         setTurnRight(e.getBearing() + 90 - (10 * direcao));  // anda lateralmente (strafe)
-        setAhead(150 * direcao);
+        setAhead((50 + Math.random()*80) * direcao);
         // troca direção aleatória
         if (Math.random() > 0.85) {
         	direcao *= -1;
