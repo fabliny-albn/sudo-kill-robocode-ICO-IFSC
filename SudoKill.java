@@ -301,7 +301,7 @@ public class SudoKill extends AdvancedRobot
         setTurnRight(e.getBearing() + 90 - (10 * direcao));  // anda lateralmente (strafe)
         setAhead((50 + Math.random()*80) * direcao);
         // troca direção aleatória
-        if (Math.random() > 0.85) {
+        if (Math.random() > 0.93 || e.getDistance() < 170) {
         	direcao *= -1;
         }   
     } 
