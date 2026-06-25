@@ -1,6 +1,4 @@
 # sudo-kill-robocode-ICO-IFSC
-Durante o desenvolvimento do projeto, o uso do Git e do GitHub foi obrigatório tanto para o controle de versão do código quanto para fins de avaliação.
-
 
 ## INTRODUÇÃO
 O projeto, proposto na disciplina de Introdução à Computação, teve como objetivo promover o trabalho colaborativo, o aprendizado de programação e o controle versão em trabalhos em grupo. Para isso, o docente propôs a criação de robôs no Robocode para participarem de um duelo entre equipes. 
