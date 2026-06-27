@@ -116,10 +116,6 @@ Ao final da atividade, as integrantes desenvolveram habilidades importantes, com
 - Documentação de projetos.
 
 ## CONCLUSÃO
-O desenvolvimento do robô no Robocode foi uma experiência significativa para consolidar conhecimentos de programação e introduzir práticas utilizadas no desenvolvimento profissional de software. A atividade permitiu aplicar conceitos teóricos em um projeto prático e dinâmico, tornando o aprendizado mais motivador e interativo.
-
-Além da criação do robô, o projeto destacou a importância do controle de versão com Git e GitHub, ferramentas fundamentais para organizar o trabalho, registrar alterações e colaborar de forma eficiente em equipe. A utilização de branches, commits e integração de código mostrou como projetos maiores podem ser desenvolvidos de maneira estruturada e segura.
-
-Por fim, conclui-se que a atividade contribuiu não apenas para o aprendizado técnico, mas também para o desenvolvimento de competências de comunicação, cooperação e resolução de problemas, habilidades essenciais para futuras experiências acadêmicas e profissionais na área de computação.
+Em suma, através do desenvolvimento do robô no Robocode foi possível aplicar na prática os conhecimentos de programação e consolidar conceitos técnicos do Git e do GitHub, essenciais para o gerenciamento de projetos de software. Ademais, o projeto contribuiu para o aprimoramento do pensamento lógico com a criação de estratégias de movimentação, ataque, defesa e também na resolução de conflitos com a divergência de códigos, erros de compilação e trabalho em equipe com a divisão das funções do nosso Robô, o SudoKill. Dessa forma, nota-se que a experiência alcançou os objetivos propostos, não apenas aplicando a teoria, como ficou evidente na Batalha dos Robôs, em sala, com a classificação em primeiro lugar, mas também progredindo em competências interpessoais, fundamentais para a atuação profissional.
 
 ## ANEXO
