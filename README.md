@@ -119,3 +119,21 @@ Ao final da atividade, as integrantes desenvolveram habilidades importantes, com
 Em suma, através do desenvolvimento do robô no Robocode foi possível aplicar na prática os conhecimentos de programação e consolidar conceitos técnicos do Git e do GitHub, essenciais para o gerenciamento de projetos de software. Ademais, o projeto contribuiu para o aprimoramento do pensamento lógico com a criação de estratégias de movimentação, ataque, defesa e também na resolução de conflitos com a divergência de códigos, erros de compilação e trabalho em equipe com a divisão das funções do nosso Robô, o SudoKill. Dessa forma, nota-se que a experiência alcançou os objetivos propostos, não apenas aplicando a teoria, como ficou evidente na Batalha dos Robôs, em sala, com a classificação em primeiro lugar, mas também progredindo em competências interpessoais, fundamentais para a atuação profissional.
 
 ## ANEXO
+
+### Relatório de Batalha
+
+O relatório final disponibilizado pelo professor demonstra o desempenho dos robôs e a vitória da equipe sobre as outras equipes da turma.
+
+![Relatório de Batalha](anexos/relatorio_batalha.png)
+
+### Batalha contra o robô Debochas
+
+Momento da batalha contra o robô Debochas, utilizado como referência para o desenvolvimento da estratégia do nosso tanque.
+
+![Batalha contra Debochas](anexos/batalha_contra_debochas.png)
+
+### Vitória contra o Debochas
+
+Registro da vitória obtida pelo nosso robô durante os testes realizados.
+
+![Vitória contra Debochas](anexos/vitoria_contra_debochas.png)
