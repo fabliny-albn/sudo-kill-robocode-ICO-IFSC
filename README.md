@@ -92,28 +92,8 @@ A estrutura adotada demonstrou, na prática, como o Git e o GitHub contribuem pa
 
 ## RESULTADOS
 
-A realização do projeto proporcionou diversos aprendizados práticos relacionados tanto à programação quanto ao trabalho colaborativo. No aspecto técnico, o grupo pôde compreender melhor a linguagem Java e aplicar conceitos de lógica de programação, estruturas de decisão, repetição e organização de código no desenvolvimento de um robô autônomo para o Robocode.
-
-Também foi possível aprender como estratégias diferentes influenciam diretamente o desempenho do robô nas batalhas. Recursos como movimentação evasiva, radar inteligente, troca dinâmica de alvos e mira preditiva mostraram, na prática, a importância do raciocínio lógico e da tomada de decisões automatizadas.
-
-No aspecto da colaboração, o uso do Git e do GitHub foi um dos principais aprendizados da atividade. A equipe aprendeu a trabalhar com repositórios remotos, branches, commits e integração de código, entendendo como essas ferramentas são utilizadas em projetos reais de desenvolvimento de software.
-
-Entre os principais desafios enfrentados, destacam-se:
-- Integrar as diferentes partes do código desenvolvidas por cada integrante;
-- Resolver conflitos entre alterações feitas em arquivos semelhantes;
-- Ajustar o comportamento do robô para evitar movimentos previsíveis;
-- Testar e equilibrar estratégias de ataque e defesa.
-
-Esses desafios foram superados por meio de comunicação constante no grupo, realização de testes frequentes no Robocode e utilização do GitHub para organizar as alterações e acompanhar o histórico do projeto.
-
-Ao final da atividade, as integrantes desenvolveram habilidades importantes, como:
-- Programação em Java;
-- Desenvolvimento de algoritmos;
-- Uso de Git e GitHub;
-- Resolução de problemas;
-- Trabalho em equipe;
-- Planejamento e divisão de tarefas;
-- Documentação de projetos.
+Como resultado, em primeiro ponto de análise,  observou-se que do ponto de vista da programação, já que a divisão de tarefas foi realizada de modo que todos contribuíssem para o código, todos os integrantes aprofundaram seus conhecimentos em Java, colocando em prática conceitos como lógica, estruturas condicionais, laços de repetição que aplicados em uma estratégia baseada em estruturas como esquiva inteligente, rastreamento por radar, alternância de alvos e previsão de trajetória para a construção de um robô autônomo para o Robocode, usando como parâmetro os Robôs Debochas e Mosquitão como evidente no anexo
+Em segundo ponto, o uso do Git e GitHub possibilitaram experiências no uso de repositórios remotos, branches, commits e integração de código em que os principais conflitos encontrados foram: unir os trechos de códigos criados por cada membro da equipe, lidar com conflitos gerados por alterações em arquivos comuns, tornar o comportamento do robô menos previsível, equilibrar estratégias ofensivas - como a identificação e acompanhamento de um único alvo por vez e mira preditiva estimando a posição futura do inimigo com base em sua velocidade e direção de movimento- e defensivas -com a realização lateral dos movimentos  em relação ao inimigo (strafe), altera sua velocidade de forma aleatória e muda de direção periodicamente ou quando o adversário está muito próximo. O que acarretou no aprofundamento do contato com o Git e GitHub, lógica e trabalho em equipe. 
 
 ## CONCLUSÃO
 Em suma, através do desenvolvimento do robô no Robocode foi possível aplicar na prática os conhecimentos de programação e consolidar conceitos técnicos do Git e do GitHub, essenciais para o gerenciamento de projetos de software. Ademais, o projeto contribuiu para o aprimoramento do pensamento lógico com a criação de estratégias de movimentação, ataque, defesa e também na resolução de conflitos com a divergência de códigos, erros de compilação e trabalho em equipe com a divisão das funções do nosso Robô, o SudoKill. Dessa forma, nota-se que a experiência alcançou os objetivos propostos, não apenas aplicando a teoria, como ficou evidente na Batalha dos Robôs, em sala, com a classificação em primeiro lugar, mas também progredindo em competências interpessoais, fundamentais para a atuação profissional.
